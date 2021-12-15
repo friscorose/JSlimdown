@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<textarea id="input"></textarea>
+<br>
+<button id="load">fetch test.md</button>
+<button id="render">render</button>
+<div id="test"></div>
+<script type="text/javascript" src="JSlimdown.js"></script>
+<script>
+let input = document.getElementById('input')
+let render = document.getElementById('render')
+let test = document.getElementById('test')
+let load = document.getElementById('load')
+
+load.onclick = () => {
+        fetch('./test.md').then(read => read.text()).then(page => input.value=page)
+};
+
+render.onclick = () => {
+    test.innerHTML = JSlimdown['render']( input.value );
+    console.log( test.innerHTML );
+};
+</script>
+
+</body>
+</html>
